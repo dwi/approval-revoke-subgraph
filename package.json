@@ -1,0 +1,21 @@
+{
+  "name": "approval-revoke-subgraph",
+  "license": "MIT",
+  "scripts": {
+    "codegen": "rm -rf generated && graph codegen -o generated",
+    "prebuild": "yarn codegen",
+    "build": "rm -rf build && graph build",
+    "postinstall": "yarn build",
+    "create": "graph create approvals --node https://subgraphs.alchemy.com/api/subgraphs/deploy",
+    "remove": "graph remove approvals --node https://subgraphs.alchemy.com/api/subgraphs/deploy",
+    "deploy": "graph deploy approvals --version-label v1.2 --node https://subgraphs.alchemy.com/api/subgraphs/deploy --deploy-key XXX --ipfs https://ipfs.satsuma.xyz",
+    "create-local": "graph create --node http://localhost:8020/ axiedao/approvals",
+    "remove-local": "graph remove --node http://localhost:8020/ axiedao/approvals",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 axiedao/approvals"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "^0.67.3",
+    "@graphprotocol/graph-ts": "0.32.0",
+    "@openzeppelin/contracts": "^5.0.1"
+  }
+}

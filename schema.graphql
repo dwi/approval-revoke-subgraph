@@ -1,0 +1,30 @@
+enum TokenType {
+  ERC20
+  ERC721
+  ERC1155
+  UNKNOWN
+}
+
+type Token @entity {
+  id: ID! # Token address
+  name: String # Token name, e.g., "axie" for Axie Infinity tokens
+  symbol: String
+  decimals: Int!
+  type: TokenType! # Token type, e.g., ERC721 or ERC20
+  approvals: [TokenApproval!]! @derivedFrom(field: "token")
+}
+
+type TokenApproval @entity {
+  id: ID!
+  token: Token! # Link to the Token entity
+  owner: Account! # Owner address
+  spender: Bytes! # Spender address, rename it to more clearly represent the spender's address
+  isAll: Boolean! # Whether all tokens are approved or not
+  amount: BigInt # Optional: amount of tokens approved, relevant for ERC20
+  # tokenIds: [BigInt!]! # Optional: specific token IDs approved, relevant for ERC721, ERC1155
+}
+
+type Account @entity {
+  id: ID!
+  approvals: [TokenApproval!]! @derivedFrom(field: "owner")
+}

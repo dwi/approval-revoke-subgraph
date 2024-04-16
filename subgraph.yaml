@@ -1,0 +1,53 @@
+specVersion: 0.0.4
+description: Token approve list
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: token
+    network: ronin
+    source:
+      abi: IERC20
+      startBlock: 33075610
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Token
+        - TokenApproval
+        - Account
+      abis:
+        - name: IERC20
+          file: ./node_modules/@openzeppelin/contracts/build/contracts/ERC20.json
+        - name: IERC165
+          file: ./node_modules/@openzeppelin/contracts/build/contracts/IERC165.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+      file: ./src/token.ts
+  - kind: ethereum
+    name: nft
+    network: ronin
+    source:
+      abi: IERC721
+      startBlock: 33075610
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Token
+        - TokenApproval
+        - Account
+      abis:
+        - name: IERC721
+          file: ./node_modules/@openzeppelin/contracts/build/contracts/ERC721.json
+        - name: IERC165
+          file: ./node_modules/@openzeppelin/contracts/build/contracts/IERC165.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+      file: ./src/nft.ts
