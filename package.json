@@ -8,7 +8,7 @@
     "postinstall": "yarn build",
     "create": "graph create approvals --node https://subgraphs.alchemy.com/api/subgraphs/deploy",
     "remove": "graph remove approvals --node https://subgraphs.alchemy.com/api/subgraphs/deploy",
-    "deploy": "graph deploy approvals --version-label v1.2 --node https://subgraphs.alchemy.com/api/subgraphs/deploy --deploy-key XXX --ipfs https://ipfs.satsuma.xyz",
+    "deploy": "graph deploy approvals --version-label test --node https://subgraphs.alchemy.com/api/subgraphs/deploy --deploy-key xx --ipfs https://ipfs.satsuma.xyz",
     "create-local": "graph create --node http://localhost:8020/ axiedao/approvals",
     "remove-local": "graph remove --node http://localhost:8020/ axiedao/approvals",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 axiedao/approvals"

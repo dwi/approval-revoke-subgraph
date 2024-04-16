@@ -8,7 +8,7 @@ dataSources:
     network: ronin
     source:
       abi: IERC20
-      startBlock: 33075610
+      startBlock: 33075600
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -31,7 +31,7 @@ dataSources:
     network: ronin
     source:
       abi: IERC721
-      startBlock: 33075610
+      startBlock: 33075600
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
